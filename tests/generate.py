@@ -13,7 +13,7 @@ def generate_sample_data():
     writer = Writer(file)
     writer.start(profile="ros1", library="test")
     string_schema_id = writer.register_schema(
-        name=String._type, encoding="ros1", data=String._full_text.encode()  # type: ignore
+        name=String._type, encoding="ros1msg", data=String._full_text.encode()  # type: ignore
     )
     string_channel_id = writer.register_channel(
         topic="chatter", message_encoding="ros1", schema_id=string_schema_id

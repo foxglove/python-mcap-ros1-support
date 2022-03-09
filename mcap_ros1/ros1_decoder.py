@@ -18,7 +18,7 @@ class Ros1Decoder:
         for record in self.__reader.records:
             if isinstance(record, Schema):
                 schemas[record.id] = record
-                if record.encoding != "ros1":
+                if record.encoding != "ros1msg":
                     raise McapError(
                         f"Can't decode schema with encoding {record.encoding}"
                     )
@@ -33,4 +33,4 @@ class Ros1Decoder:
                 channel = channels[record.channel_id]
                 schema = schemas[channel.schema_id]
                 message = msg_types[schema.name]().deserialize(record.data)
-                yield message
+                yield (channel.topic, message)
