@@ -15,6 +15,7 @@ std_msgs = {version="*", index="ros"}
 
 [dev-packages]
 black = "*"
+build = "*"
 pytest = "*"
 
 [requires]
