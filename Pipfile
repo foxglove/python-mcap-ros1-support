@@ -16,7 +16,8 @@ std_msgs = {version="*", index="ros"}
 [dev-packages]
 black = "*"
 build = "*"
+pyright = "*"
 pytest = "*"
 
 [requires]
-python_version = "3.9"
+python_version = "3.8"
