@@ -33,4 +33,4 @@ class Ros1Decoder:
                 channel = channels[record.channel_id]
                 schema = schemas[channel.schema_id]
                 message = msg_types[schema.name]().deserialize(record.data)
-                yield (channel.topic, message)
+                yield (channel.topic, record, message)
