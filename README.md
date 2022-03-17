@@ -13,12 +13,23 @@ pipenv install mcap-ros1-support
 ## Example Usage
 
 ```python
+# Reading from a strean
 from mcap.mcap0.stream_reader import StreamReader
 from mcap_ros1.decoder import Ros1Decoder
 
 reader = StreamReader("my_data.mcap")
 decoder = Ros1Decoder(reader)
 for topic, record, message in decoder.messages:
+    print(message)
+```
+
+```python
+# Reading from raw mcap data
+from mcap.mcap0.stream_reader import StreamReader
+from mcap_ros1.decoder import Ros1Decoder
+
+data = open("my_data.mcap", "rb").read()
+for topic, record, message in Ros1Decoder(data).messages:
     print(message)
 ```
 
