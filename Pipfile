@@ -12,6 +12,7 @@ name = "ros"
 mcap = "*"
 rosbag = {version="*", index="ros"}
 std_msgs = {version="*", index="ros"}
+typing_extensions = "*"
 
 [dev-packages]
 black = "*"
