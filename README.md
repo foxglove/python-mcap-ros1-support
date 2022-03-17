@@ -18,8 +18,8 @@ from mcap_ros1.decoder import Ros1Decoder
 
 reader = StreamReader("my_data.mcap")
 decoder = Ros1Decoder(reader)
-for m in decoder.messages:
-    print(m)
+for topic, record, message in decoder.messages:
+    print(message)
 ```
 
 ## Stay in touch
