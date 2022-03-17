@@ -1,4 +1,5 @@
-from typing import Any, Dict
+from io import BytesIO, RawIOBase
+from typing import Any, Dict, Union, cast
 
 from genpy import dynamic  # type: ignore
 from mcap.mcap0.exceptions import McapError
@@ -7,8 +8,11 @@ from mcap.mcap0.stream_reader import StreamReader
 
 
 class Ros1Decoder:
-    def __init__(self, reader: StreamReader):
-        self.__reader = reader
+    def __init__(self, source: Union[bytes, StreamReader]):
+        if isinstance(source, StreamReader):
+            self.__reader = source
+        else:
+            self.__reader = StreamReader(cast(RawIOBase, BytesIO(source)))
 
     @property
     def messages(self):
