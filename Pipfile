@@ -12,6 +12,7 @@ name = "ros"
 mcap = "*"
 rosbag = {version="*", index="ros"}
 std_msgs = {version="*", index="ros"}
+typing_extensions = "*"
 
 [dev-packages]
 black = "*"
@@ -20,4 +21,4 @@ pyright = "*"
 pytest = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3"
