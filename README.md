@@ -15,10 +15,10 @@ pipenv install mcap-ros1-support
 ```python
 # Reading from a strean
 from mcap.mcap0.stream_reader import StreamReader
-from mcap_ros1.decoder import Ros1Decoder
+from mcap_ros1.decoder import Decoder
 
 reader = StreamReader("my_data.mcap")
-decoder = Ros1Decoder(reader)
+decoder = Decoder(reader)
 for topic, record, message in decoder.messages:
     print(message)
 ```
@@ -26,10 +26,10 @@ for topic, record, message in decoder.messages:
 ```python
 # Reading from raw mcap data
 from mcap.mcap0.stream_reader import StreamReader
-from mcap_ros1.decoder import Ros1Decoder
+from mcap_ros1.decoder import Decoder
 
 data = open("my_data.mcap", "rb").read()
-for topic, record, message in Ros1Decoder(data).messages:
+for topic, record, message in Decoder(data).messages:
     print(message)
 ```
 
