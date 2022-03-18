@@ -7,7 +7,7 @@ from mcap.mcap0.records import Channel, Message, Schema
 from mcap.mcap0.stream_reader import StreamReader
 
 
-class Ros1Decoder:
+class Decoder:
     def __init__(self, source: Union[bytes, StreamReader]):
         if isinstance(source, StreamReader):
             self.__reader = source
