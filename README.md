@@ -4,10 +4,31 @@ This package provides ROS1 support for the Python MCAP file format reader &amp; 
 
 ## Installation
 
-Install via [Pipenv](https://pipenv.pypa.io/en/latest/) by adding `mcap-ros1-support` to your `Pipfile` or via the command line:
+You can install directly via pip. This also requires the rosbag package from the
+ROS package index.
 
 ```bash
-pipenv install mcap-ros1-support
+pip install --index-url https://rospypi.github.io/simple rosbag
+pip install mcap-ros1-support
+```
+
+Or you can install via [Pipenv](https://pipenv.pypa.io/en/latest/) and a Pipfile.
+This requires specifying the source for the rosbag package like this:
+
+```
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[[source]]
+url = "https://rospypi.github.io/simple"
+verify_ssl = true
+name = "ros"
+
+[packages]
+mcap-ros1-support = "*"
+rosbag = "*"
 ```
 
 ## Example Usage
