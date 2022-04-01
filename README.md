@@ -1,6 +1,7 @@
 # Python MCAP Ros1 support
 
-This package provides ROS1 support for the Python MCAP file format reader &amp; writer.
+This package provides ROS1 support for the Python MCAP file format reader &amp;
+writer.
 
 ## Installation
 
@@ -12,8 +13,8 @@ pip install --index-url https://rospypi.github.io/simple rosbag
 pip install mcap-ros1-support
 ```
 
-Or you can install via [Pipenv](https://pipenv.pypa.io/en/latest/) and a Pipfile.
-This requires specifying the source for the rosbag package like this:
+Or you can install via [Pipenv](https://pipenv.pypa.io/en/latest/) and a
+Pipfile. This requires specifying the source for the rosbag package like this:
 
 ```
 [[source]]
@@ -31,7 +32,7 @@ mcap-ros1-support = "*"
 rosbag = "*"
 ```
 
-## Example Usage
+## Reading ROS1 Messages
 
 ```python
 # Reading from a strean
@@ -54,6 +55,20 @@ for topic, record, message in Decoder(data).messages:
     print(message)
 ```
 
+## Writing ROS1 Messages
+
+```python
+from mcap_ros1.writer import Writer as Ros1Writer
+from std_msgs.msg import String
+
+output = open("example.mcap", "w+b")
+ros_writer = Ros1Writer(output=output)
+for i in range(0, 10):
+    ros_writer.write_message(String(data=f"string message {i}"), "chatter")
+ros_writer.finish()
+```
+
 ## Stay in touch
 
-Join our [Slack channel](https://foxglove.dev/join-slack) to ask questions, share feedback, and stay up to date on what our team is working on.
+Join our [Slack channel](https://foxglove.dev/join-slack) to ask questions,
+share feedback, and stay up to date on what our team is working on.

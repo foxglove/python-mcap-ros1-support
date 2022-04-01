@@ -1,5 +1,5 @@
-from io import BytesIO, RawIOBase
-from typing import Any, Dict, Union, cast
+from io import BufferedReader, BytesIO, RawIOBase
+from typing import Any, Dict, Union
 
 from genpy import dynamic  # type: ignore
 from mcap.mcap0.exceptions import McapError
@@ -8,11 +8,15 @@ from mcap.mcap0.stream_reader import StreamReader
 
 
 class Decoder:
-    def __init__(self, source: Union[bytes, StreamReader]):
+    def __init__(
+        self, source: Union[bytes, BytesIO, RawIOBase, BufferedReader, StreamReader]
+    ):
         if isinstance(source, StreamReader):
             self.__reader = source
+        elif isinstance(source, (BufferedReader, BytesIO, RawIOBase)):
+            self.__reader = StreamReader(input=source)
         else:
-            self.__reader = StreamReader(cast(RawIOBase, BytesIO(source)))
+            self.__reader = StreamReader(BytesIO(source))
 
     @property
     def messages(self):
