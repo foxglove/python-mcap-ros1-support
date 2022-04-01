@@ -64,7 +64,7 @@ from std_msgs.msg import String
 output = open("example.mcap", "w+b")
 ros_writer = Ros1Writer(output=output)
 for i in range(0, 10):
-    ros_writer.write_message(String(data=f"string message {i}"), "chatter")
+    ros_writer.write_message("chatter", String(data=f"string message {i}"))
 ros_writer.finish()
 ```
 
