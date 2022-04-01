@@ -63,10 +63,11 @@ class Writer:
 
         buffer = BytesIO()
         message.serialize(buffer)
+        log_time = log_time or time.time_ns()
         self.__writer.add_message(
             channel_id=channel_id,
             log_time=log_time or time.time_ns(),
-            publish_time=publish_time or time.time_ns(),
+            publish_time=publish_time or log_time,
             sequence=sequence,
             data=buffer.getvalue(),
         )
