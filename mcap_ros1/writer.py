@@ -12,7 +12,13 @@ class Writer:
         self.__writer.start(profile="ros1", library="python-mcap-ros1-support")
         self.__finished = False
 
+    def __del__(self):
+        self.finish()
+
     def finish(self):
+        """
+        Finishes writing to the MCAP stream. This must be called before the stream is closed.
+        """
         if not self.__finished:
             self.__writer.finish()
             self.__finished = True
@@ -25,6 +31,18 @@ class Writer:
         publish_time: Optional[int] = None,
         sequence: int = 0,
     ):
+        """
+        Writes a message to the MCAP stream, automatically registering schemas and channels as
+        needed.
+
+        @param topic: The topic of the message.
+        @param message: The message to write.
+        @param log_time: The time at which the message was logged.
+            Will default to the current time if not specified.
+        @param publish_time: The time at which the message was published.
+            Will default to the current time if not specified.
+        @param sequence: An optional sequence number.
+        """
         if message._type not in self.__schema_ids.keys():
             schema_id = self.__writer.register_schema(
                 name=message._type,
