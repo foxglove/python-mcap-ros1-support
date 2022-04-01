@@ -9,7 +9,7 @@ def test_write_messages():
     output = BytesIO()
     ros_writer = Ros1Writer(output=output)
     for i in range(0, 10):
-        ros_writer.write_message(String(data=f"string message {i}"), "chatter")
+        ros_writer.write_message("chatter", String(data=f"string message {i}"))
     ros_writer.finish()
 
     output.seek(0)
