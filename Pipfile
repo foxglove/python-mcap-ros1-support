@@ -18,6 +18,8 @@ black = "*"
 build = "*"
 pyright = "*"
 pytest = "*"
+PyYaml = "*"
+std_msgs = {version="*", index="ros"}
 
 [requires]
 python_version = "3"
