@@ -9,9 +9,8 @@ verify_ssl = true
 name = "ros"
 
 [packages]
+genpy = {version="*", index="ros"}
 mcap = "*"
-rosbag = {version="*", index="ros"}
-std_msgs = {version="*", index="ros"}
 typing_extensions = "*"
 
 [dev-packages]
@@ -19,6 +18,8 @@ black = "*"
 build = "*"
 pyright = "*"
 pytest = "*"
+PyYaml = "*"
+std_msgs = {version="*", index="ros"}
 
 [requires]
 python_version = "3"
